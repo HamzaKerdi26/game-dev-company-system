@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza Interactive | Neural Access Point</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Rain Effect -->
+    <canvas id="matrixCanvas"></canvas>
+    
+    <!-- Particle Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Animated Grid -->
+    <div class="grid-background"></div>
+    
+    <!-- Holographic Scanlines -->
+    <div class="scanlines"></div>
+    
+    <!-- Glowing Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Achievement Popup -->
+    <div class="achievement-popup" id="achievementPopup">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-content">
+            <div class="achievement-title">ACHIEVEMENT UNLOCKED</div>
+            <div class="achievement-text" id="achievementText"></div>
+            <div class="achievement-xp">+<span id="achievementXP">0</span> XP</div>
+        </div>
+    </div>
+
+    <!-- Level Up Popup -->
+    <div class="levelup-popup" id="levelupPopup">
+        <div class="levelup-content">
+            <div class="levelup-title">⚡ LEVEL UP! ⚡</div>
+            <div class="levelup-level">LEVEL <span id="newLevel">2</span></div>
+            <div class="levelup-text">NEW ABILITIES UNLOCKED</div>
+            <div class="levelup-glow"></div>
+        </div>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <div class="login-wrapper" id="loginWrapper">
+        <div class="login-card">
+            <div class="scan-line"></div>
+            <div class="glitch-border"></div>
+            <div class="hologram-overlay"></div>
+            
+            <div class="logo-section">
+                <div class="hexagon-container">
+                    <div class="hexagon">
+                        <div class="hex-inner">
+                            <svg viewBox="0 0 100 100" class="logo-svg">
+                                <defs>
+                                    <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#00ff88;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#00d9ff;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" class="hex-shape"/>
+                                <text x="50" y="65" text-anchor="middle" class="hex-text">H</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hex-rings">
+                        <div class="hex-ring ring-1"></div>
+                        <div class="hex-ring ring-2"></div>
+                        <div class="hex-ring ring-3"></div>
+                    </div>
+                </div>
+                
+                <div class="glitch-wrapper">
+                    <h1 class="brand-name" data-text="HAMZA">HAMZA</h1>
+                    <h2 class="brand-subtitle" data-text="INTERACTIVE">INTERACTIVE</h2>
+                    <div class="company-tagline">WHERE LEGENDS ARE CODED</div>
+                </div>
+                
+                <div class="status-bar">
+                    <span class="status-dot"></span>
+                    <span class="status-text">NEURAL LINK ACTIVE</span>
+                    <span class="separator">|</span>
+                    <span class="status-text">ALL SYSTEMS OPERATIONAL</span>
+                </div>
+            </div>
+            
+            <div class="access-panel">
+                <div class="panel-header">
+                    <div class="header-left">
+                        <span class="terminal-icon">⚡</span>
+                        <div class="header-text">
+                            <h3>SECURE ACCESS TERMINAL</h3>
+                            <span class="subtitle">GAME DEVELOPMENT COMMAND CENTER</span>
+                        </div>
+                    </div>
+                    <div class="security-level">
+                        <span class="level-badge">CLEARANCE V</span>
+                    </div>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="input-group">
+                        <label for="username">
+                            <span class="label-icon">◆</span>
+                            OPERATOR IDENTIFICATION
+                            <span class="label-hint">Enter Your Codename</span>
+                        </label>
+                        <div class="input-container">
+                            <div class="input-glow"></div>
+                            <span class="input-prefix">&gt;&gt;</span>
+                            <input type="text" id="username" placeholder="ENTER_CREDENTIALS" required autocomplete="username" spellcheck="false">
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">
+                            <span class="label-icon">◆</span>
+                            NEURAL AUTHENTICATION KEY
+                            <span class="label-hint">Encrypted Passphrase</span>
+                        </label>
+                        <div class="input-container">
+                            <div class="input-glow"></div>
+                            <span class="input-prefix">🔐</span>
+                            <input type="password" id="password" placeholder="ENTER_PASSPHRASE" required autocomplete="current-password">
+                            <span class="toggle-password" id="togglePassword">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                            <div class="input-border"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="cyber-btn">
+                        <span class="btn-bg"></span>
+                        <span class="btn-text">◢ INITIATE NEURAL LINK ◣</span>
+                        <span class="btn-glow"></span>
+                        <span class="btn-loader"></span>
+                        <div class="btn-corners">
+                            <span class="corner corner-tl"></span>
+                            <span class="corner corner-tr"></span>
+                            <span class="corner corner-bl"></span>
+                            <span class="corner corner-br"></span>
+                        </div>
+                    </button>
+                </form>
+                
+                <div id="message" class="message-box"></div>
+                
+                <div class="footer-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-icon">🌐</span>
+                            <span class="info-text">NEURAL NETWORK STABLE</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">⚡</span>
+                            <span class="info-text">QUANTUM CORES: ONLINE</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">🔒</span>
+                            <span class="info-text">FIREWALL: ACTIVE</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📡</span>
+                            <span class="info-text">UPLINK: 99.99%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="content" class="dashboard">
+        <div class="dashboard-overlay"></div>
+        
+        <!-- HUD TOP BAR -->
+        <div class="hud-topbar">
+            <div class="hud-left">
+                <div class="logo-mini">
+                    <svg viewBox="0 0 100 100" class="logo-svg-mini">
+                        <polygon points="50 1 95 25 95 75 50 99 5 75 5 25" class="hex-shape-mini"/>
+                        <text x="50" y="65" text-anchor="middle" class="hex-text-mini">H</text>
+                    </svg>
+                </div>
+                <div class="hud-title">
+                    <span class="title-main">HAMZA INTERACTIVE</span>
+                    <span class="title-sub">GAME DEVELOPMENT COMMAND CENTER</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="hud-stat">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-value" id="systemLoad">98%</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="stat-icon">🌐</span>
+                    <span class="stat-value">ONLINE</span>
+                </div>
+                <div class="time-display" id="liveTime"></div>
+                <button id="logoutBtn" class="logout-btn">
+                    <span class="logout-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                    </span>
+                    <span>DISCONNECT</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RPG CHARACTER PROFILE -->
+        <div class="rpg-profile-card">
+            <div class="profile-glow"></div>
+            <div class="profile-content">
+                <!-- Character Avatar & Info -->
+                <div class="character-section">
+                    <div class="character-avatar">
+                        <div class="avatar-ring"></div>
+                        <div class="avatar-ring-2"></div>
+                        <div class="avatar-icon" id="userAvatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="avatar-level-badge">
+                            <span class="level-text">LVL</span>
+                            <span class="level-number" id="playerLevel">1</span>
+                        </div>
+                    </div>
+                    <div class="character-info">
+                        <h2 class="character-name" id="userName"></h2>
+                        <span class="character-class" id="userRole">DEVELOPER</span>
+                        <div class="character-meta">
+                            <div class="meta-item">
+                                <span class="meta-label">ID:</span>
+                                <span class="meta-value" id="userId">@hamza</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">SESSION:</span>
+                                <span class="meta-value" id="sessionTime">00:00:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XP Bar -->
+                <div class="xp-section">
+                    <div class="xp-header">
+                        <span class="xp-label">EXPERIENCE</span>
+                        <span class="xp-values"><span id="currentXP">0</span> / <span id="maxXP">100</span> XP</span>
+                    </div>
+                    <div class="xp-bar">
+                        <div class="xp-bar-fill" id="xpBarFill" style="width: 0%">
+                            <div class="xp-bar-shine"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⚔️</div>
+                        <div class="stat-info">
+                            <div class="stat-label">STRENGTH</div>
+                            <div class="stat-value" id="statStrength">45</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-info">
+                            <div class="stat-label">INTELLIGENCE</div>
+                            <div class="stat-value" id="statIntelligence">88</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-info">
+                            <div class="stat-label">AGILITY</div>
+                            <div class="stat-value" id="statAgility">62</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💎</div>
+                        <div class="stat-info">
+                            <div class="stat-label">LUCK</div>
+                            <div class="stat-value" id="statLuck">77</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="skills-section">
+                    <h3 class="section-title">⚡ ACTIVE SKILLS</h3>
+                    <div class="skills-grid" id="skillsGrid">
+                        <div class="skill-item" data-skill="coding">
+                            <div class="skill-icon">💻</div>
+                            <div class="skill-name">CODING</div>
+                            <div class="skill-level">LVL <span>10</span></div>
+                        </div>
+                        <div class="skill-item" data-skill="design">
+                            <div class="skill-icon">🎨</div>
+                            <div class="skill-name">DESIGN</div>
+                            <div class="skill-level">LVL <span>8</span></div>
+                        </div>
+                        <div class="skill-item" data-skill="debug">
+                            <div class="skill-icon">🐛</div>
+                            <div class="skill-name">DEBUG</div>
+                            <div class="skill-level">LVL <span>9</span></div>
+                        </div>
+                        <div class="skill-item" data-skill="leadership">
+                            <div class="skill-icon">👑</div>
+                            <div class="skill-name">LEADERSHIP</div>
+                            <div class="skill-level">LVL <span>7</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="achievements-section">
+                    <h3 class="section-title">🏆 ACHIEVEMENTS</h3>
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <div class="achievement-badge unlocked">
+                            <div class="badge-icon">🚀</div>
+                            <div class="badge-name">First Login</div>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <div class="badge-icon">⭐</div>
+                            <div class="badge-name">10 Tasks</div>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <div class="badge-icon">💎</div>
+                            <div class="badge-name">Master Coder</div>
+                        </div>
+                        <div class="achievement-badge locked">
+                            <div class="badge-icon">🔥</div>
+                            <div class="badge-name">Speed Demon</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quests Panel -->
+        <div class="quests-panel">
+            <h2 class="panel-title">📜 ACTIVE QUESTS</h2>
+            <div class="quests-list" id="questsList">
+                <div class="quest-item active">
+                    <div class="quest-header">
+                        <span class="quest-icon">⚔️</span>
+                        <span class="quest-name">Complete Your First Mission</span>
+                        <span class="quest-reward">+50 XP</span>
+                    </div>
+                    <div class="quest-progress">
+                        <div class="quest-progress-bar">
+                            <div class="quest-progress-fill" style="width: 60%"></div>
+                        </div>
+                        <span class="quest-progress-text">3/5</span>
+                    </div>
+                </div>
+                <div class="quest-item">
+                    <div class="quest-header">
+                        <span class="quest-icon">🎯</span>
+                        <span class="quest-name">Master Developer Path</span>
+                        <span class="quest-reward">+100 XP</span>
+                    </div>
+                    <div class="quest-progress">
+                        <div class="quest-progress-bar">
+                            <div class="quest-progress-fill" style="width: 30%"></div>
+                        </div>
+                        <span class="quest-progress-text">3/10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DATA TABLES -->
+        <div class="dashboard-content">
+            <div class="table-wrapper" id="myTasks"></div>
+            <div class="table-wrapper" id="assets"></div>
+            <div class="table-wrapper" id="adminOverview"></div>
+        </div>
+
+        <!-- DASHBOARD FOOTER -->
+        <div class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <span class="copyright">© 2025 HAMZA INTERACTIVE STUDIOS</span>
+                    <span class="separator">|</span>
+                    <span class="footer-text">FORGING THE FUTURE OF GAMING</span>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-badge">
+                        <span class="badge-icon">🛡️</span>
+                        <span>SECURED</span>
+                    </div>
+                    <div class="footer-badge">
+                        <span class="badge-icon">⚡</span>
+                        <span>REAL-TIME</span>
+                    </div>
+                    <div class="footer-badge">
+                        <span class="badge-icon">🌐</span>
+                        <span>GLOBAL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
